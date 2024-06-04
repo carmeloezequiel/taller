@@ -36,7 +36,7 @@ df_picos['lamda'].loc[df_picos['lamda'] > 600] = None
 #grafico 
 valores_x = df_datos_yodo['lamda']
 valores_y = df_datos_yodo['abs']
-grafico = plt.plot(valores_x, valores_y, c='r')
+grafico = plt.plot(valores_x, valores_y, c='b')
 
 #grafico valles
 valores_xp = df_picos['lamda']
