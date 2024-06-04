@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from detecta import detect_peaks
-from scipy.signal import deconvolve
 
 from peakutils import baseline
 
