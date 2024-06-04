@@ -6,11 +6,10 @@ on:
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  analizando_datos:
+  imprimir_datos:
     permissions:
       contents: write
 
-  imprimir_datos:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
