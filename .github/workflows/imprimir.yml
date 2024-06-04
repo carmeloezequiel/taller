@@ -21,6 +21,7 @@ jobs:
         run: pip install pandas
             pip install matplotlib
             pip install detecta
+            pip install peakutils
 
       - name: Run command in the vm
         run: |
