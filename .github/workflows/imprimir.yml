@@ -28,4 +28,16 @@ jobs:
         run: |
           echo "tus datos son:"
           python graficador.py
+      
+      - name: Commit results
+        if: always()
+        run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git diff --quiet || git stash
+            git pull --rebase origin main
+            git stash list | grep "stash@{0}" && git stash apply
+            git add .
+            git diff --cached --exit-code || git commit -m "Add earnings output" --allow-empty
+            git push --force-with-lease origin HEAD:main
           
