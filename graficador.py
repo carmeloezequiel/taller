@@ -47,7 +47,6 @@ plt.title('Espectro Molecular del Yodo')
 plt.xlabel('Coeficiente de Absorción')
 plt.ylabel('Longitud de Onda (nm)')
 
-plt.show()
 
 plt.savefig('datos')
 
