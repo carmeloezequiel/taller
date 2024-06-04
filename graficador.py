@@ -50,4 +50,5 @@ plt.ylabel('Longitud de Onda (nm)')
 
 plt.show()
 
-print(df_datos_vo.head())
+plt.savefig('datos')
+

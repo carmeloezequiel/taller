@@ -19,5 +19,6 @@ jobs:
 
       - name: Run command in the vm
         run: |
-          echo "Hola, es carmelo. Estoy dentro de un action."
-          ls -lhrt
+          echo "tus datos son:"
+          python graficador.py
+          
