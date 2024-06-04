@@ -38,6 +38,7 @@ jobs:
           git pull --rebase origin main
           git stash list | grep "stash@{0}" && git stash apply
           git add .
+          git commit -m "Update"
           git diff --cached --exit-code || git commit -m "Add earnings output" --allow-empty
           git push --force-with-lease origin HEAD:main
           
