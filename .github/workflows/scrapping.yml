@@ -1,1 +1,46 @@
+name: scapper
 
+on:
+  schedule:
+    - cron: '00 0 * * *' # Runs every day at 00:00 UTC
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  analizando_datos:
+    permissions:
+      contents: write
+      
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: descargar data
+        run: |
+          curl -sL "https://companiesmarketcap.com/defense-contractors/largest-companies-by-market-cap/?download=csv" -o data.csv
+          if [ ! -s data.csv ]; then
+            echo "Downloaded CSV file is empty"
+            exit 1
+          fi
+      
+      - name: analizar datos
+        run: |
+          pip install pandas
+          python analisis.py
+
+      - name: commit output
+        if: always()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git diff --quiet || git stash
+          git pull --rebase origin main
+          git stash list | grep "stash@{0}" && git stash apply
+          git add .
+          git diff --cached --exit-code || git commit -m "tabla actualizada" --allow-empty
+          git push --force-with-lease origin HEAD:main
